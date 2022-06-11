@@ -1,5 +1,6 @@
 package controller;
 
+import view.AgregarInventarioView;
 import view.MenuAgregarView;
 
 
@@ -30,10 +31,11 @@ public class MenuAgregarController {
 
                 break;
             case 2:
-                System.out.println("\t---------------------------------------------------");
-                System.out.println("\t  Pantalla de agregar inventario en desarrollo...");
-                System.out.println("\t---------------------------------------------------");
-                System.out.println();
+                AgregarInventarioView agregarInventarioView = new AgregarInventarioView();
+
+                AgregarInventarioController agregarInventarioController = new AgregarInventarioController(agregarInventarioView);
+                agregarInventarioController.showAgregarInventario();
+                agregarInventarioController.agregarInventario();
 
                 break;
             case 3:

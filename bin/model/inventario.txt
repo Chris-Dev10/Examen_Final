@@ -1,0 +1,4 @@
+Marca: Royal canin
+Peso: 12
+Mascota: Perro
+Cantidad: 5
