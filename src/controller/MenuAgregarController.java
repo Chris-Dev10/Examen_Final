@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import view.AgregarInventarioView;
 import view.MenuAgregarView;
 
@@ -19,7 +20,7 @@ public class MenuAgregarController {
     }
 
 
-    public void showMenuAgregar() {
+    public void showMenuAgregar() throws IOException {
         opcion = menuAgregarView.startMenuAgregar();
 
         switch (opcion) {

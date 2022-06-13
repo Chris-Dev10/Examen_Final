@@ -1,14 +1,12 @@
 package controller;
 
 import java.io.*;
-
 import model.CostaldeCroquetas;
 import view.AgregarInventarioView;
 
 
 public class AgregarInventarioController {
     private AgregarInventarioView agregarInventarioView;
-    private int cantidad;
 
 
     public AgregarInventarioController(AgregarInventarioView agregarInventarioView) {
@@ -18,28 +16,46 @@ public class AgregarInventarioController {
 
     public void showAgregarInventario() {
         agregarInventarioView.startAgregarInventario();
-
-        cantidad = agregarInventarioView.getCantidad();
     }
 
 
-    public void agregarInventario() {
+    public void agregarInventario() throws IOException {
         CostaldeCroquetas costaldeCroquetas = new CostaldeCroquetas();
         costaldeCroquetas.setMarca(agregarInventarioView.getMarca());
         costaldeCroquetas.setPeso(agregarInventarioView.getPeso());
         costaldeCroquetas.setMascota(agregarInventarioView.getMascota());
 
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(".\\src\\model\\inventario.txt"));
-        
-            bufferedWriter.write("Marca: " + costaldeCroquetas.getMarca() + "\n");
-            bufferedWriter.write("Peso: " + Integer.toString(costaldeCroquetas.getPeso()) + "\n");
-            bufferedWriter.write("Mascota: " + costaldeCroquetas.getMascota() + "\n");
-            bufferedWriter.write("Cantidad: " + Integer.toString(cantidad) + "\n");
+        File file = new File(".\\src\\model\\inventario.txt");
 
-            bufferedWriter.close();
-        } catch(Exception exception) {
-            return;
+        FileOutputStream fileOutputStream = null;
+        fileOutputStream = new FileOutputStream(".\\src\\model\\inventario.txt", true);
+
+        if (file.length() == 0) {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(costaldeCroquetas);
+
+            objectOutputStream.close();
+        } else {
+            AppendObjectOutputStream appendObjectOutputStream = null;
+            appendObjectOutputStream = new AppendObjectOutputStream(fileOutputStream);
+            appendObjectOutputStream.writeObject(costaldeCroquetas);
+            
+            appendObjectOutputStream.close();
         }
+
+        fileOutputStream.close();
+    }
+}
+
+
+class AppendObjectOutputStream extends ObjectOutputStream {
+    protected AppendObjectOutputStream(OutputStream outputStream) throws IOException, SecurityException {
+        super(outputStream);
+    }
+    
+
+    @Override
+    public void writeStreamHeader() throws IOException {
+        return;
     }
 }

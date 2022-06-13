@@ -7,6 +7,7 @@ public class App {
         MenuPrincipalView menuView = new MenuPrincipalView();
 
         MenuPrincipalController menuController = new MenuPrincipalController(menuView);
+        menuController.loadInventario();
 
         while (menuController.getOpcion() != 3) {
             menuController.showMenuPrincipal();

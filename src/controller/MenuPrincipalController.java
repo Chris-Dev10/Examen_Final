@@ -1,5 +1,9 @@
 package controller;
 
+import java.io.*;
+import java.util.ArrayList;
+
+import model.CostaldeCroquetas;
 import view.MenuPrincipalView;
 import view.MenuAgregarView;
 import view.MenuMostrarView;
@@ -7,11 +11,32 @@ import view.MenuMostrarView;
 
 public class MenuPrincipalController {
     private MenuPrincipalView menuPrincipalView;
+    private ArrayList<CostaldeCroquetas> inventario;
     private int opcion = 0;
 
 
     public MenuPrincipalController(MenuPrincipalView menuPrincipalView) {
         this.menuPrincipalView = menuPrincipalView;
+        inventario = new ArrayList<>();
+    }
+
+
+    public void loadInventario() throws IOException, ClassNotFoundException {
+        File file = new File(".\\src\\model\\inventario.txt");
+
+        if (file.length() != 0) {
+            FileInputStream fileInputStream = null;
+            fileInputStream = new FileInputStream(".\\src\\model\\inventario.txt");
+
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            while (fileInputStream.available() != 0) {
+                inventario.add((CostaldeCroquetas) objectInputStream.readObject());
+            }
+
+            objectInputStream.close();
+            fileInputStream.close();
+        }
     }
 
 
@@ -20,7 +45,7 @@ public class MenuPrincipalController {
     }
 
 
-    public void showMenuPrincipal() {
+    public void showMenuPrincipal() throws IOException {
         opcion = menuPrincipalView.startMenuPrincipal();
 
         switch (opcion) {
@@ -49,6 +74,11 @@ public class MenuPrincipalController {
                 System.out.println("  Cerrando programa...");
                 System.out.println("------------------------");
                 System.out.println();
+
+                for (Object object : inventario) {
+                    System.out.println(object);
+                }
+                
                 
                 break;
             default:

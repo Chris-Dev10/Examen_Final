@@ -1,28 +1,18 @@
 package model;
 
+import java.io.Serializable;
 
-public class CostaldeCroquetas {
-    private int id;
+
+public class CostaldeCroquetas implements Serializable {
     private String marca;
     private int peso;
     private String mascota;
 
     
     public CostaldeCroquetas() {
-        id = 0;
         marca = null;
         peso = 0;
         mascota = null;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-
-    public void setId(int id) {
-        this.id = id;
     }
 
 
@@ -53,5 +43,10 @@ public class CostaldeCroquetas {
 
     public void setMascota(String mascota) {
         this.mascota = mascota;
+    }
+
+
+    public String toString() {
+        return marca + " " + peso + " " + mascota;
     }
 }

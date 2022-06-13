@@ -8,7 +8,6 @@ public class AgregarInventarioView {
     private String marca;
     private int peso;
     private String mascota;
-    private int cantidad;
     
     
     public AgregarInventarioView() {
@@ -29,9 +28,6 @@ public class AgregarInventarioView {
         System.out.print("\t\tMascota: ");
         mascota = input.nextLine();
         System.out.println();
-        System.out.print("\t\tCantidad: ");
-        cantidad = input.nextInt();
-        System.out.println();
     }
 
 
@@ -47,10 +43,5 @@ public class AgregarInventarioView {
 
     public String getMascota() {
         return mascota;
-    }
-
-
-    public int getCantidad() {
-        return cantidad;
     }
 }
