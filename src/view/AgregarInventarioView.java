@@ -8,6 +8,7 @@ public class AgregarInventarioView {
     private String marca;
     private int peso;
     private String mascota;
+    private float precio;
     
     
     public AgregarInventarioView() {
@@ -16,17 +17,20 @@ public class AgregarInventarioView {
 
 
     public void startAgregarInventario() {
-        System.out.println("\t\t---- Agregar inventario ----");
+        System.out.println("\t---- Agregar inventario ----");
         System.out.println();
-        System.out.print("\t\tMarca: ");
+        System.out.print("\tMarca: ");
         marca = input.nextLine();
         System.out.println();
-        System.out.print("\t\tPeso: ");
+        System.out.print("\tPeso del costal (kg): ");
         peso = input.nextInt();
         input.nextLine();
         System.out.println();
-        System.out.print("\t\tMascota: ");
+        System.out.print("\tTipo mascota: ");
         mascota = input.nextLine();
+        System.out.println();
+        System.out.print("\tPrecio: ");
+        precio = input.nextFloat();
         System.out.println();
     }
 
@@ -43,5 +47,10 @@ public class AgregarInventarioView {
 
     public String getMascota() {
         return mascota;
+    }
+
+
+    public float getPrecio() {
+        return precio;
     }
 }

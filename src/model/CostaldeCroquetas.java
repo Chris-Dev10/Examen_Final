@@ -7,12 +7,14 @@ public class CostaldeCroquetas implements Serializable {
     private String marca;
     private int peso;
     private String mascota;
+    private float precio;
 
     
     public CostaldeCroquetas() {
         marca = null;
         peso = 0;
         mascota = null;
+        precio = 0;
     }
 
 
@@ -46,7 +48,12 @@ public class CostaldeCroquetas implements Serializable {
     }
 
 
-    public String toString() {
-        return marca + " " + peso + " " + mascota;
+    public float getPrecio() {
+        return precio;
+    }
+
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
 }

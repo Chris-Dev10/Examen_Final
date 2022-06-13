@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import model.CostaldeCroquetas;
 import view.MenuPrincipalView;
-import view.MenuAgregarView;
-import view.MenuMostrarView;
+import view.MostrarInventarioView;
+import view.AgregarInventarioView;
 
 
 public class MenuPrincipalController {
@@ -50,23 +50,18 @@ public class MenuPrincipalController {
 
         switch (opcion) {
             case 1:
-                MenuAgregarView menuAgregarView = new MenuAgregarView();
+                AgregarInventarioView agregarInventarioView = new AgregarInventarioView();
 
-                MenuAgregarController menuAgregarController = new MenuAgregarController(menuAgregarView);
-
-                while (menuAgregarController.getOpcion() != 3) {
-                    menuAgregarController.showMenuAgregar();
-                }
+                AgregarInventarioController agregarInventarioController = new AgregarInventarioController(agregarInventarioView);
+                agregarInventarioController.showAgregarInventario();
+                inventario.add(agregarInventarioController.agregarInventario());
 
                 break;
             case 2:
-                MenuMostrarView menuMostrarView = new MenuMostrarView();
+                MostrarInventarioView mostrarInventarioView = new MostrarInventarioView();
 
-                MenuMostrarController menuMostrarController = new MenuMostrarController(menuMostrarView);
-
-                while (menuMostrarController.getOpcion() != 3) {
-                    menuMostrarController.showMenuMostrar();
-                }
+                MostrarInventarioController mostrarInventarioController = new MostrarInventarioController(mostrarInventarioView, inventario);
+                mostrarInventarioController.showMostrarInventario();
                 
                 break;
             case 3:
@@ -74,11 +69,6 @@ public class MenuPrincipalController {
                 System.out.println("  Cerrando programa...");
                 System.out.println("------------------------");
                 System.out.println();
-
-                for (Object object : inventario) {
-                    System.out.println(object);
-                }
-                
                 
                 break;
             default:

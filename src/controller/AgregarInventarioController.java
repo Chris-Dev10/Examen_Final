@@ -19,11 +19,12 @@ public class AgregarInventarioController {
     }
 
 
-    public void agregarInventario() throws IOException {
+    public CostaldeCroquetas agregarInventario() throws IOException {
         CostaldeCroquetas costaldeCroquetas = new CostaldeCroquetas();
         costaldeCroquetas.setMarca(agregarInventarioView.getMarca());
         costaldeCroquetas.setPeso(agregarInventarioView.getPeso());
         costaldeCroquetas.setMascota(agregarInventarioView.getMascota());
+        costaldeCroquetas.setPrecio(agregarInventarioView.getPrecio());
 
         File file = new File(".\\src\\model\\inventario.txt");
 
@@ -44,6 +45,8 @@ public class AgregarInventarioController {
         }
 
         fileOutputStream.close();
+
+        return costaldeCroquetas;
     }
 }
 
